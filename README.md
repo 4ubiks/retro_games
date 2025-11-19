@@ -1,8 +1,8 @@
 # Retro Games for old systems
 
-## DX Ball
+## DX Ball - `dxball.cpp`
 
-## Tetris
+## Tetris - `tetris.cpp
 
 ## Space Invaders
 

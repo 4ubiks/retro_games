@@ -2,7 +2,7 @@
 
 ## DX Ball - `dxball.cpp`
 
-## Tetris - `tetris.cpp
+## Tetris - `tetris.cpp`
 
 ## Space Invaders
 

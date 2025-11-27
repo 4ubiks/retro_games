@@ -20,18 +20,18 @@ bits 16
     int 0x13
 
     ; load into 0x18000, 128 sectors of 512 bytes, uses 'es'
-    mov ah, 0x02        ; ensuring instructions haven't changed
-    mov al, 0x80        ; loading same number of sectors
+   ; mov ah, 0x02        ; ensuring instructions haven't changed
+   ; mov al, 0x80        ; loading same number of sectors
 
     ; changes from initial submission
-    mov ch, 0x02        ; cylinder 2
-    mov cl, 0x81        ; have already loaded 128 sectors, starting with 129
+   ; mov ch, 0x02        ; cylinder 2
+   ; mov cl, 0x81        ; have already loaded 128 sectors, starting with 129
 
-    mov bx, 0x1000
-    mov es, bx
-    mov bx, 0x8000
+   ; mov bx, 0x1000
+   ; mov es, bx
+   ; mov bx, 0x8000
     
-    int 0x13
+   ; int 0x13
 
 ;; switch to protected mode
     cli

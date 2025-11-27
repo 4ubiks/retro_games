@@ -6,4 +6,6 @@
 
 ## Space Invaders
 
+## Snake
+
 ## Outlaw

@@ -2,10 +2,6 @@
 #include "systemCalls.h"
 #include "constants.h"
 
-// TODO:
-// if left, can't go right / if down, can't go up
-// what do if win
-
 // aesthetic functions
 void printWelcome();
 void printRules();

@@ -9,7 +9,7 @@ void printBackground();
 void printGameboard();
 void printBlocks(int numberOfBlocks, int startBlock, int xCoordinate, int color);
 void printRules();
-void printGameOver();
+int printGameOver();
 void printYouWin();
 
 // game logic
@@ -17,7 +17,7 @@ void generateBall(int &ballX, int &ballY, int direction);
 void initializePieces(struct Piece pieceArray[], int numberOfPieces, char color, int x_startBlock, int y_startBlock);
 void printPlatform(int platformOffset, int platformArray[]);
 int didHitPlatform(int platformArray[], int &ballX, int &ballDirection);
-int didHitBlock(int platformArray[], int &ballX, int &ballY, int &ballDirection);
+int didHitBlock(int platformArray[], int ballX, int ballY, int &ballDirection);
 
 // pieces
 struct Piece {
@@ -76,6 +76,20 @@ int main(){
 	initializePieces(a13, 2, COLOR_MAGENTA, 35, 16);
 	
 	while (true){
+
+		initializePieces(a1, 2, COLOR_MAGENTA, 35, 4);
+		initializePieces(a2, 4, COLOR_CYAN, 30, 5);
+		initializePieces(a3, 6, COLOR_DIRTY_BLUE, 25, 6);
+		initializePieces(a4, 8, COLOR_BLUE, 20, 7);
+		initializePieces(a5, 10, COLOR_GREEN, 15, 8);
+		initializePieces(a6, 12, COLOR_BALL_RED, 10, 9);
+		initializePieces(a7, 14, COLOR_RED, 5, 10);
+		initializePieces(a8, 12, COLOR_BALL_RED, 10, 11);
+		initializePieces(a9, 10, COLOR_GREEN, 15, 12);
+		initializePieces(a10, 8, COLOR_BLUE, 20, 13);
+		initializePieces(a11, 6, COLOR_DIRTY_BLUE, 25, 14);
+		initializePieces(a12, 4, COLOR_CYAN, 30, 15);
+		initializePieces(a13, 2, COLOR_MAGENTA, 35, 16);
 	
 		if (ballX == 70 && ballMovement == BALL_UR){
 			ballMovement = BALL_UL;
@@ -110,6 +124,7 @@ int main(){
 		
 		generateBall(ballX, ballY, ballMovement);
 		didHitBlock((int *)15, ballX, ballY, ballMovement);
+		
 		char *bufferMemory = (char *)KEYBOARD_BUFFER;
 		int keyPressed = checkKey((char *)bufferMemory);
 
@@ -208,11 +223,12 @@ void printRules() {
 	printString((char *)"there are rules.", 5, 15, COLOR_WHITE);
 }
 
-void printGameOver() {
-	//clearScreen();
+int printGameOver() {
 	printString((char *)"game over...", 32, 15, COLOR_RED);	
 	while (true){
-		printString((char *)"game over...", 32, 15, COLOR_RED);		
+		printString((char *)"game over...", 32, 15, COLOR_RED);	
+		delay(200000);
+		return 0;	
 	}
 }
 
@@ -287,15 +303,31 @@ int didHitPlatform(int platformArray[], int &ballX, int &ballDirection){
 	return 0;
 }
 
-int didHitBlock(int platformArray[], int &ballX, int &ballY, int &ballDirection){
+int didHitBlock(int platformArray[], int ballX, int ballY, int &ballDirection){
 	char *V_ram = (char *)0xb8000;
 	int position=(ballX*80+ballY)*2;
 
+	char tmpCoordinatesX[3];
+	tmpCoordinatesX[0] = (ballX/10) % 10 + '0';
+	tmpCoordinatesX[1] = ballX % 10 + '0';
+	tmpCoordinatesX[2] = '\0';
+
+	char tmpCoordinatesY[3];
+	tmpCoordinatesY[0] = (ballY/10) % 10 + '0';
+	tmpCoordinatesY[1] = ballY % 10 + '0';
+	tmpCoordinatesY[2] = '\0';
+
+	char existingChar[2];
+	existingChar[0] = V_ram[position];
+	existingChar[1] = '\0';
+
+	printString((char *)existingChar, 19, 15, COLOR_WHITE);
+
+	printString((char *)tmpCoordinatesX, 21, 15, COLOR_WHITE);
+	printString((char *)tmpCoordinatesY, 20, 15, COLOR_WHITE);
+
 	if (V_ram[position] == '[' || V_ram[position] == ']' || V_ram[position] == '='){
-		while (true){
-			printString((char *)"helllooooooooo", 22, 15, COLOR_WHITE);
-			// return 1;
-		}
+		
 	}
 	
 	return 0;

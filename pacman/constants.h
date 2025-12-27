@@ -1,0 +1,13 @@
+// colors
+#define COLOR_BLUE_BARRIER 0x1
+#define COLOR_GHOST_RED 0xc
+#define COLOR_GHOST_PINK 0xd
+#define COLOR_GHOST_ORANGE 0x2a
+#define COLOR_GHOST_TEAL 0xb
+#define COLOR_PACMAN 0xe
+#define COLOR_WHITE 0xf
+
+// hardware
+#define KEYBOARD_STATUS_PORT 0x64
+#define KEYBOARD_DATA_PORT 0x60
+#define KEYBOARD_BUFFER 0x1000
